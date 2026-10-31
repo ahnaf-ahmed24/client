@@ -2,7 +2,7 @@ import Link from "next/link";
 import { LuAperture } from "react-icons/lu";
 
 interface LogoProps {
-
+  /** "dark" renders for dark backgrounds (footer), "light" for the default base */
   variant?: "light" | "dark";
   className?: string;
 }
@@ -14,7 +14,7 @@ export default function Logo({ variant = "light", className = "" }: LogoProps) {
       aria-label="StudioSpace — go to homepage"
       className={`group flex items-center gap-2.5 ${className}`}
     >
-      
+      {/* Aperture / studio-spotlight badge */}
       <span className="grid size-10 shrink-0 place-items-center rounded-xl bg-linear-to-br from-primary via-indigo-500 to-indigo-400 text-primary-content shadow-md shadow-primary/25 transition-transform duration-300 group-hover:rotate-90">
         <LuAperture aria-hidden className="size-[22px]" />
       </span>

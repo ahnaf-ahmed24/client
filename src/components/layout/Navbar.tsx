@@ -21,12 +21,13 @@ import type { IconType } from "react-icons";
 import Logo from "./Logo";
 import { NAV_LINKS } from "./navLinks";
 import { useAuth } from "@/providers/AuthProvider";
+import Image from "next/image";
 
 interface AccountLink {
   href: string;
   label: string;
   icon: IconType;
-  /** "Add New Studio" is highlighted in brand accent, per the design mock. */
+
   accent?: boolean;
 }
 
@@ -38,14 +39,12 @@ const ACCOUNT_LINKS: AccountLink[] = [
   { href: "/dashboard/wishlist", label: "Saved Wishlist", icon: LuHeart },
 ];
 
-/** Plain-route match, used for the dashboard account links. */
+
 const isRouteActive = (href: string, pathname: string) =>
   href === "/" ? pathname === "/" : pathname === href || pathname.startsWith(`${href}/`);
 
-/**
- * Home anchors ("/#explore", …) are active together with whichever home
- * section is currently in view (tracked by the scroll-spy below).
- */
+
+
 const isLinkActive = (href: string, pathname: string, activeSection: string | null) => {
   const hashIndex = href.indexOf("#");
   if (hashIndex === -1) {
@@ -65,13 +64,11 @@ const initialsOf = (name: string) =>
     .join("")
     .toUpperCase() || "U";
 
-/** Dark charcoal circle with a moon/sun swap — matches the design mock. */
 function ThemeToggle() {
   const { resolvedTheme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
 
-  // Resolve the theme only after hydration to avoid an SSR markup mismatch;
-  // the moon is shown until then (matching the server render).
+
   useEffect(() => setMounted(true), []);
 
   const dark = mounted && resolvedTheme === "dark";
@@ -104,7 +101,7 @@ export default function Navbar() {
 
   const headerRef = useRef<HTMLElement | null>(null);
 
-  // Elevate the header once the page scrolls past the top.
+
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8);
     onScroll();
@@ -112,7 +109,7 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // Scroll-spy: highlight the home section currently in the viewport.
+
   useEffect(() => {
     if (pathname !== "/") {
       setActiveSection(null);
@@ -121,8 +118,7 @@ export default function Navbar() {
 
     let frame = 0;
     const update = () => {
-      // The section whose top has passed the upper third of the viewport is
-      // the "current" one; before the first section that's the hero (Home).
+
       const marker = window.innerHeight * 0.35;
       let current: string | null = null;
       document.querySelectorAll<HTMLElement>("[data-nav-section]").forEach((section) => {
@@ -138,8 +134,7 @@ export default function Navbar() {
     update();
     window.addEventListener("scroll", onScroll, { passive: true });
     window.addEventListener("resize", onScroll);
-    // Re-evaluate after the browser's initial anchor scroll settles when
-    // landing on urls like /#how-it-works from another page.
+
     const settle = window.setTimeout(update, 450);
 
     return () => {
@@ -150,7 +145,7 @@ export default function Navbar() {
     };
   }, [pathname]);
 
-  // Close any open menu when the route changes.
+
   useEffect(() => {
     setMobileOpen(false);
     setUserMenuOpen(false);
@@ -211,7 +206,7 @@ export default function Navbar() {
       }`}
     >
       <div className="container-page flex h-16 items-center gap-4">
-        {/* Left: mobile menu toggle + logo */}
+       
         <div className="flex items-center gap-1.5">
           <button
             type="button"
@@ -230,7 +225,7 @@ export default function Navbar() {
           <Logo />
         </div>
 
-        {/* Center: desktop navigation links */}
+       
         <nav
           className="hidden flex-1 justify-center lg:flex"
           aria-label="Primary navigation"
@@ -260,14 +255,14 @@ export default function Navbar() {
           })}
         </nav>
 
-        {/* Right: theme toggle + authentication actions */}
+        
         <div className="ml-auto flex items-center gap-2 sm:gap-3">
           <ThemeToggle />
 
           {authLoading ? (
             <div className="skeleton h-10 w-24 rounded-full" aria-hidden />
           ) : user ? (
-            /* ------- Authenticated: avatar + initials chip + dropdown ------- */
+            
             <div className="relative">
               <button
                 type="button"
@@ -279,7 +274,8 @@ export default function Navbar() {
                 className="group flex items-center gap-2 rounded-full p-1 transition-colors hover:bg-base-200 pr-2.5"
               >
                 {user.photoURL ? (
-                  <img
+                  
+                  <Image
                     src={user.photoURL}
                     alt=""
                     className="size-10 rounded-full object-cover"
@@ -320,7 +316,7 @@ export default function Navbar() {
 
                   <div className="mx-1 h-px bg-base-200" role="presentation" />
 
-                  {/* Account links */}
+                  
                   <ul role="none" className="mt-1.5 space-y-0.5">
                     {ACCOUNT_LINKS.map(({ href, label, icon: Icon, accent }) => {
                       const active = isRouteActive(href, pathname);
@@ -353,8 +349,7 @@ export default function Navbar() {
                   </ul>
 
                   <div className="mx-1 my-1.5 h-px bg-base-200" role="presentation" />
-
-                  {/* Sign out */}
+  
                   <button
                     type="button"
                     role="menuitem"
@@ -369,7 +364,7 @@ export default function Navbar() {
               )}
             </div>
           ) : (
-            /* ---------- Unauthenticated: Login & Register ---------- */
+           
             <div className="hidden items-center gap-2 sm:flex">
               <Link href="/login" className="btn btn-ghost rounded-full px-4 font-medium">
                 Login
@@ -385,7 +380,7 @@ export default function Navbar() {
         </div>
       </div>
 
-      {/* Mobile menu panel */}
+      
       {mobileOpen && (
         <div
           id="mobile-menu"
@@ -435,7 +430,7 @@ export default function Navbar() {
                 {/* User identity */}
                 <div className="flex items-center gap-3 rounded-lg px-3 py-2">
                   {user.photoURL ? (
-                    <img
+                    <Image
                       src={user.photoURL}
                       alt=""
                       className="size-10 rounded-full object-cover"
