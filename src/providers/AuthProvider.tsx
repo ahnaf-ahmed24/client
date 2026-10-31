@@ -30,29 +30,19 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const router = useRouter();
 
   const refreshWishlist = useCallback(async () => {
-    try {
-      const { items } = await apiGet<{ items: WishlistItem[] }>("wishlist");
-      setWishlistIds(items.map((i) => i.studioId));
-    } catch {
-      setWishlistIds([]);
-    }
+    const { items } = await apiGet<{ items: WishlistItem[] }>("wishlist");
+    setWishlistIds(items.map((i) => i.studioId));
   }, []);
 
   const refreshUser = useCallback(async () => {
-    try {
-      const { user: fresh } = await apiGet<{ user: PublicUser }>("auth/me");
-      setUser(fresh);
-      if (fresh) {
-        await refreshWishlist().catch(() => null);
-      } else {
-        setWishlistIds([]);
-      }
-      return fresh;
-    } catch {
-      setUser(null);
+    const { user: fresh } = await apiGet<{ user: PublicUser }>("auth/me");
+    setUser(fresh);
+    if (fresh) {
+      await refreshWishlist().catch(() => null);
+    } else {
       setWishlistIds([]);
-      return null;
     }
+    return fresh;
   }, [refreshWishlist]);
 
   useEffect(() => {
@@ -79,9 +69,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   );
 
   const logout = useCallback(async () => {
-    try {
-      await apiPost("auth/logout");
-    } catch {}
+    await apiPost("auth/logout");
     setUser(null);
     setWishlistIds([]);
     router.push("/");
