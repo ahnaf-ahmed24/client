@@ -1,26 +1,193 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@plugin "daisyui" {
+  themes: false;
+}
+
+
+@plugin "daisyui/theme" {
+  name: "light";
+  default: true;
+  color-scheme: light;
+  --color-base-100: #ffffff;
+  --color-base-200: #f8f8fc;
+  --color-base-300: #ecebf4;
+  --color-base-content: #191b23;
+  --color-primary: #4f46e5;
+  --color-primary-content: #eef2ff;
+  --color-secondary: #c026d3;
+  --color-secondary-content: #fdf4ff;
+  --color-accent: #0d9488;
+  --color-accent-content: #f0fdfa;
+  --color-neutral: #1e293b;
+  --color-neutral-content: #f8fafc;
+  --color-info: #2563eb;
+  --color-info-content: #eff6ff;
+  --color-success: #16a34a;
+  --color-success-content: #f0fdf4;
+  --color-warning: #eab308;
+  --color-warning-content: #422006;
+  --color-error: #dc2626;
+  --color-error-content: #fef2f2;
+  --radius-selector: 0.75rem;
+  --radius-field: 0.5rem;
+  --radius-box: 1.25rem;
+}
+
+@plugin "daisyui/theme" {
+  name: "dark";
+  color-scheme: dark;
+  --color-base-100: #0b0d12;
+  --color-base-200: #12151c;
+  --color-base-300: #1b2130;
+  --color-base-content: #e7eaf2;
+  --color-primary: #818cf8;
+  --color-primary-content: #1e1b4b;
+  --color-secondary: #e879f9;
+  --color-secondary-content: #4a044e;
+  --color-accent: #2dd4bf;
+  --color-accent-content: #042f2e;
+  --color-neutral: #23293a;
+  --color-neutral-content: #e7eaf2;
+  --color-info: #3b82f6;
+  --color-info-content: #eff6ff;
+  --color-success: #22c55e;
+  --color-success-content: #052e16;
+  --color-warning: #fbbf24;
+  --color-warning-content: #422006;
+  --color-error: #ef4444;
+  --color-error-content: #fff1f2;
+  --radius-selector: 0.75rem;
+  --radius-field: 0.5rem;
+  --radius-box: 1.25rem;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-inter);
+  --font-heading: var(--font-sora);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 5.5rem;
+}
+
+::selection {
+  background: color-mix(in srgb, var(--color-primary) 80%, transparent);
+  color: var(--color-primary-content);
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-base-200);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-base-300);
+  border-radius: 9999px;
+  border: 2px solid var(--color-base-200);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-primary);
+}
+
+.section-gap {
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+}
+@media (min-width: 1024px) {
+  .section-gap {
+    padding-top: 5.5rem;
+    padding-bottom: 5.5rem;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+.hero-overlay {
+  background: linear-gradient(100deg, rgba(10, 10, 16, 0.88) 8%, rgba(10, 10, 16, 0.55) 45%, rgba(10, 10, 16, 0.18) 100%);
+}
+
+
+
+.container-page {
+  @apply mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8;
+}
+
+
+.eyebrow {
+  @apply font-heading text-xs font-semibold uppercase tracking-[0.22em] text-primary;
+}
+
+
+.section-heading {
+  @apply font-heading text-3xl font-bold tracking-tight text-base-content sm:text-4xl;
+}
+
+
+.text-gradient {
+  background-image: linear-gradient(92deg, var(--color-primary), #818cf8 45%, #a5b4fc);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+
+.card-hover {
+  @apply transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-base-300/50;
+}
+
+
+.panel-dark {
+  @apply relative overflow-hidden bg-neutral text-neutral-content;
+}
+.panel-grid {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.045) 1px, transparent 1px);
+  background-size: 44px 44px;
+}
+.panel-glow {
+  background: radial-gradient(closest-side, rgba(79, 70, 229, 0.38), transparent);
+}
+.panel-glow-soft {
+  background: radial-gradient(closest-side, rgba(129, 140, 248, 0.16), transparent);
+}
+
+/* Entrance animation */
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+.rise {
+  animation: rise 0.6s ease-out both;
+}
+.rise-1 { animation-delay: 0.07s; }
+.rise-2 { animation-delay: 0.14s; }
+.rise-3 { animation-delay: 0.21s; }
+.rise-4 { animation-delay: 0.28s; }
+@media (prefers-reduced-motion: reduce) {
+  .rise {
+    animation: none;
+  }
+}
+
+/* Swiper brand styling */
+.swiper-pagination-bullet {
+  opacity: 1 !important;
+  background: rgba(255, 255, 255, 0.4) !important;
+  width: 10px !important;
+  height: 10px !important;
+  transition: all 0.25s ease;
+}
+.swiper-pagination-bullet-active {
+  background: var(--color-primary) !important;
+  width: 26px !important;
+  border-radius: 9999px !important;
 }

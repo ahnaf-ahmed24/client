@@ -55,7 +55,7 @@ export default function FeaturedStudios() {
         </Link>
       </div>
 
-      {source === "demo" && (
+      {/* {source === "demo" && (
         <div
           role="alert"
           className="mt-6 flex items-start gap-3 rounded-xl border border-warning/40 bg-warning/10 px-4 py-3 text-sm"
@@ -77,7 +77,7 @@ export default function FeaturedStudios() {
             </button>
           </p>
         </div>
-      )}
+      )} */}
 
       {source === "loading" ? (
         <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3" aria-hidden>
