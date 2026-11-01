@@ -155,26 +155,33 @@ export default function Home() {
           From searching to shooting in four steps
         </h2>
 
-        <div className="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          {BOOKING_STEPS.map(({ icon: Icon, step, title, text }) => (
-            <div key={step} className="card-hover rounded-2xl bg-base-200/50 p-6">
-              <div className="flex items-center justify-between">
-                <span className="grid size-11 place-items-center rounded-xl bg-primary text-primary-content">
-                  <Icon aria-hidden className="size-5" />
-                </span>
+        <div className="relative mt-10">
+          <div
+            aria-hidden
+            className="absolute left-[12.5%] right-[12.5%] top-0 hidden border-t-2 border-dashed border-base-300 lg:block"
+          />
+          <div className="grid grid-cols-1 gap-x-4 gap-y-10 sm:grid-cols-2 lg:grid-cols-4">
+            {BOOKING_STEPS.map(({ icon: Icon, step, title, text }) => (
+              <div
+                key={step}
+                className="card-hover group relative rounded-2xl border border-base-300 bg-base-100 p-6 pt-11 hover:border-primary/40"
+              >
                 <span
                   aria-hidden
-                  className="font-heading text-5xl font-bold text-primary/15"
+                  className="absolute -top-5 left-6 grid size-10 place-items-center rounded-full bg-primary font-heading text-sm font-bold text-primary-content shadow-lg shadow-primary/25 ring-4 ring-base-100"
                 >
                   {step}
                 </span>
+                <span className="grid size-11 place-items-center rounded-xl bg-primary/10 text-primary transition-colors duration-300 group-hover:bg-primary group-hover:text-primary-content">
+                  <Icon aria-hidden className="size-5" />
+                </span>
+                <h3 className="mt-4 font-heading text-lg font-semibold">{title}</h3>
+                <p className="mt-1.5 text-sm leading-6 text-base-content/65">
+                  {text}
+                </p>
               </div>
-              <h3 className="mt-4 font-heading text-lg font-semibold">{title}</h3>
-              <p className="mt-1.5 text-sm leading-6 text-base-content/65">
-                {text}
-              </p>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </section>
 
@@ -235,13 +242,19 @@ export default function Home() {
             {VALUES.map(({ icon: Icon, title, text }) => (
               <div
                 key={title}
-                className="card-hover rounded-2xl border border-base-300 bg-base-100 p-5"
+                className="card-hover group relative overflow-hidden rounded-2xl border border-base-300 bg-base-100 p-5 hover:border-primary/40"
               >
-                <span className="grid size-10 place-items-center rounded-xl bg-primary/10 text-primary">
-                  <Icon aria-hidden className="size-5" />
-                </span>
-                <h3 className="mt-3.5 font-heading text-base font-semibold">{title}</h3>
-                <p className="mt-1 text-sm leading-6 text-base-content/65">{text}</p>
+                <div
+                  aria-hidden
+                  className="absolute -right-8 -top-8 size-24 rounded-full bg-linear-to-br from-primary/15 to-secondary/10 opacity-70 blur-xl transition-opacity duration-300 group-hover:opacity-100"
+                />
+                <div className="relative">
+                  <span className="grid size-11 place-items-center rounded-xl bg-linear-to-br from-primary to-secondary text-white shadow-lg shadow-primary/25 transition-transform duration-300 group-hover:-rotate-6 group-hover:scale-105">
+                    <Icon aria-hidden className="size-5" />
+                  </span>
+                  <h3 className="mt-3.5 font-heading text-base font-semibold">{title}</h3>
+                  <p className="mt-1 text-sm leading-6 text-base-content/65">{text}</p>
+                </div>
               </div>
             ))}
           </div>
