@@ -172,7 +172,7 @@ export default function StudioBrowser() {
       </form>
 
      
-      {/* {source === "demo" && (
+      {source === "demo" && (
         <div
           role="alert"
           className="mt-6 flex items-start gap-3 rounded-xl border border-warning/40 bg-warning/10 px-4 py-3 text-sm"
@@ -182,7 +182,7 @@ export default function StudioBrowser() {
             <strong>sample studios</strong> — filters run live on the sample data.
           </p>
         </div>
-      )} */}
+      )}
 
 
       {source === "loading" ? (
