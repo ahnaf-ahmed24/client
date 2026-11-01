@@ -118,7 +118,7 @@ export default function LoginForm() {
         <span className="h-px flex-1 bg-base-300" />
       </div>
 
-      <SocialButtons />
+      <SocialButtons showGithub />
 
       <p className="pt-2 text-center text-sm text-base-content/60">
         New to StudioSpace?{" "}
