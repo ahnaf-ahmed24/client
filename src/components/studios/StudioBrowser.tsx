@@ -2,14 +2,13 @@
 
 import { useCallback, useEffect, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
-import { LuRotateCcw, LuSearch } from "react-icons/lu";
+import { LuRotateCcw, LuSearch, LuTriangleAlert } from "react-icons/lu";
 import StudioCard from "./StudioCard";
 import { apiGet } from "@/lib/api";
 import type { Studio } from "@/lib/types";
 import { STUDIO_CATEGORIES } from "@/lib/types";
-import { SAMPLE_STUDIOS } from "@/lib/sampleStudios";
 
-type Source = "loading" | "live" | "demo";
+type Source = "loading" | "ready" | "error";
 type SortKey = "default" | "price-asc" | "price-desc" | "rating";
 
 const SORT_OPTIONS: { value: SortKey; label: string }[] = [
@@ -19,39 +18,9 @@ const SORT_OPTIONS: { value: SortKey; label: string }[] = [
   { value: "rating", label: "Top rated" },
 ];
 
-const byPriceAsc = (a: Studio, b: Studio) => a.hourlyRate - b.hourlyRate;
-const byPriceDesc = (a: Studio, b: Studio) => b.hourlyRate - a.hourlyRate;
-const byRating = (a: Studio, b: Studio) => b.rating - a.rating;
-
-const SORTERS: Record<SortKey, ((a: Studio, b: Studio) => number) | null> = {
-  default: null,
-  "price-asc": byPriceAsc,
-  "price-desc": byPriceDesc,
-  rating: byRating,
-};
-
-function demoFilter(studios: Studio[], category: string, q: string, sort: SortKey) {
-  let result = studios;
-  if (category) result = result.filter((s) => s.category === category);
-  if (q.trim()) {
-    const needle = q.trim().toLowerCase();
-    result = result.filter(
-      (s) =>
-        s.title.toLowerCase().includes(needle) ||
-        s.location.toLowerCase().includes(needle) ||
-        s.category.toLowerCase().includes(needle)
-    );
-  }
-  const sorter = SORTERS[sort];
-  if (sorter) result = [...result].sort(sorter);
-  return result;
-}
-
 export default function StudioBrowser() {
   const router = useRouter();
   const searchParams = useSearchParams();
-
-  
   const [category, setCategory] = useState(searchParams.get("category") ?? "");
   const [qInput, setQInput] = useState(searchParams.get("q") ?? "");
   const [q, setQ] = useState(searchParams.get("q") ?? "");
@@ -61,10 +30,13 @@ export default function StudioBrowser() {
 
   const [items, setItems] = useState<Studio[]>([]);
   const [source, setSource] = useState<Source>("loading");
+  const [error, setError] = useState("");
 
+  const hasFilters = Boolean(category || q.trim() || sort !== "default");
 
   const load = useCallback(async () => {
     setSource("loading");
+    setError("");
     try {
       const params = new URLSearchParams();
       if (category) params.set("category", category);
@@ -76,14 +48,17 @@ export default function StudioBrowser() {
         `studios${query ? `?${query}` : ""}`
       );
       setItems(live);
-      setSource("live");
-    } catch {
-      setItems(demoFilter(SAMPLE_STUDIOS, category, q, sort));
-      setSource("demo");
+      setSource("ready");
+    } catch (err) {
+      setError(
+        err instanceof Error
+          ? err.message
+          : "Could not load studios from the server."
+      );
+      setSource("error");
     }
   }, [category, q, sort]);
 
-  
   useEffect(() => {
     void load();
     const params = new URLSearchParams();
@@ -103,7 +78,6 @@ export default function StudioBrowser() {
 
   return (
     <>
-
       <form
         onSubmit={(event) => {
           event.preventDefault();
@@ -171,20 +145,6 @@ export default function StudioBrowser() {
         </div>
       </form>
 
-     
-      {source === "demo" && (
-        <div
-          role="alert"
-          className="mt-6 flex items-start gap-3 rounded-xl border border-warning/40 bg-warning/10 px-4 py-3 text-sm"
-        >
-          <p className="text-base-content/75">
-            The API isn&apos;t reachable yet, so you&apos;re browsing{" "}
-            <strong>sample studios</strong> — filters run live on the sample data.
-          </p>
-        </div>
-      )}
-
-
       {source === "loading" ? (
         <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3" aria-hidden>
           {Array.from({ length: 6 }).map((_, index) => (
@@ -201,6 +161,28 @@ export default function StudioBrowser() {
             </div>
           ))}
         </div>
+      ) : source === "error" ? (
+        <div
+          role="alert"
+          className="mt-10 rounded-2xl border border-error/30 bg-error/5 px-6 py-16 text-center"
+        >
+          <LuTriangleAlert aria-hidden className="mx-auto size-8 text-error" />
+          <h2 className="mt-3 font-heading text-xl font-semibold">
+            Couldn&apos;t load studios from the server
+          </h2>
+          <p className="mx-auto mt-2 max-w-md text-sm text-base-content/60">
+            {error} — the Explore page reads live MongoDB data, so an API
+            connection is required.
+          </p>
+          <button
+            type="button"
+            onClick={() => void load()}
+            className="btn btn-outline btn-primary mt-6 gap-2 rounded-full px-6"
+          >
+            <LuRotateCcw aria-hidden className="size-4" />
+            Try again
+          </button>
+        </div>
       ) : items.length === 0 ? (
         <div className="mt-10 rounded-2xl border border-dashed border-base-300 bg-base-200/40 px-6 py-16 text-center">
           <span className="mx-auto grid size-12 place-items-center rounded-2xl bg-primary/10 text-primary">
@@ -210,17 +192,19 @@ export default function StudioBrowser() {
             No studios match those filters
           </h2>
           <p className="mx-auto mt-2 max-w-sm text-sm text-base-content/60">
-            {source === "demo"
-              ? "Try clearing the filters — the sample set covers all five categories."
-              : "Try widening your search or check back soon — hosts list new spaces weekly."}
+            {hasFilters
+              ? "Try widening your search — every studio on the platform comes straight from the server."
+              : "No studios have been listed yet — hosts publish new spaces weekly."}
           </p>
-          <button
-            type="button"
-            onClick={resetAll}
-            className="btn btn-primary mt-6 rounded-full px-6 font-medium"
-          >
-            Clear all filters
-          </button>
+          {hasFilters && (
+            <button
+              type="button"
+              onClick={resetAll}
+              className="btn btn-primary mt-6 rounded-full px-6 font-medium"
+            >
+              Clear all filters
+            </button>
+          )}
         </div>
       ) : (
         <>

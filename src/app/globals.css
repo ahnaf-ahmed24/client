@@ -154,7 +154,7 @@ html {
   background: radial-gradient(closest-side, rgba(129, 140, 248, 0.16), transparent);
 }
 
-/* Entrance animation */
+
 @keyframes rise {
   from {
     opacity: 0;
@@ -178,7 +178,7 @@ html {
   }
 }
 
-/* Swiper brand styling */
+
 .swiper-pagination-bullet {
   opacity: 1 !important;
   background: rgba(255, 255, 255, 0.4) !important;
@@ -190,4 +190,48 @@ html {
   background: var(--color-primary) !important;
   width: 26px !important;
   border-radius: 9999px !important;
+}
+
+
+[data-theme="dark"] select {
+  color-scheme: dark;
+}
+[data-theme="light"] select {
+  color-scheme: light;
+}
+select option,
+select optgroup {
+  background-color: var(--color-base-100);
+  color: var(--color-base-content);
+}
+
+
+.gallery-arrow {
+  position: absolute;
+  top: 50%;
+  z-index: 10;
+  display: grid;
+  width: 2.5rem;
+  height: 2.5rem;
+  place-items: center;
+  border-radius: 9999px;
+  background: rgb(15 17 23 / 0.55);
+  color: #fff;
+  backdrop-filter: blur(4px);
+  transition: background 0.2s ease;
+}
+.gallery-arrow:hover {
+  background: var(--color-primary);
+}
+.gallery-arrow-prev {
+  left: 0.75rem;
+  transform: translateY(-50%);
+}
+.gallery-arrow-next {
+  right: 0.75rem;
+  transform: translateY(-50%);
+}
+.gallery-thumb[aria-current="true"] {
+  border-color: var(--color-primary);
+  opacity: 1;
 }

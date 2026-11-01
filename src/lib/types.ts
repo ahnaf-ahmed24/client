@@ -53,6 +53,7 @@ export interface Studio {
   capacity: number;
   location: string;
   image: string;
+  gallery?: string[];
   amenities: string[];
   overview: string;
   ownerName: string;
@@ -74,9 +75,9 @@ export interface Booking {
   hourlyRate: number;
   deposit: number;
   hours: number;
-  date: string; // YYYY-MM-DD
-  startTime: string; // HH:mm
-  endTime: string; // HH:mm
+  date: string; 
+  startTime: string; 
+  endTime: string; 
   total: number;
   status: BookingStatus;
   userEmail: string;

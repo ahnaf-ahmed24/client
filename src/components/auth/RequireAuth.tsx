@@ -5,7 +5,6 @@ import { useRouter } from "next/navigation";
 import PageLoader from "@/components/ui/PageLoader";
 import { useAuth } from "@/providers/AuthProvider";
 
-
 export default function RequireAuth({ children }: { children: React.ReactNode }) {
   const { user, authLoading } = useAuth();
   const router = useRouter();

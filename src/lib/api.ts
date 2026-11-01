@@ -1,7 +1,5 @@
 import type { ApiEnvelope } from "./types";
-
-export const API_BASE_URL =
-  process.env.NEXT_PUBLIC_API_BASE_URL ?? "http://localhost:5000/api";
+import { API_BASE_URL } from "./config";
 
 export class ApiError extends Error {
   status: number;
@@ -10,9 +8,13 @@ export class ApiError extends Error {
     this.status = status;
   }
 }
+export function apiUrl(path: string): string {
+  const base = API_BASE_URL.replace(/\/+$/, "");
+  return `${base}${path.startsWith("/") ? path : `/${path}`}`;
+}
 
 async function request<T>(path: string, init?: RequestInit): Promise<T> {
-  const res = await fetch(`${API_BASE_URL}${path}`, {
+  const res = await fetch(apiUrl(path), {
     credentials: "include",
     ...init,
     headers: {

@@ -18,10 +18,12 @@ export default function LoginForm() {
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [submitting, setSubmitting] = useState(false);
-
-
   useEffect(() => {
-    if (!authLoading && user) router.replace("/");
+    if (!authLoading && user) {
+      const next =
+        new URLSearchParams(window.location.search).get("next") ?? "";
+      router.replace(next.startsWith("/") && !next.startsWith("//") ? next : "/");
+    }
   }, [authLoading, user, router]);
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
@@ -32,7 +34,9 @@ export default function LoginForm() {
     try {
       const fresh = await login(email, password);
       toast.success(`Welcome back, ${fresh.name}!`);
-      router.push("/");
+      const next =
+        new URLSearchParams(window.location.search).get("next") ?? "";
+      router.replace(next.startsWith("/") && !next.startsWith("//") ? next : "/");
     } catch (error) {
       toast.error(
         error instanceof Error ? error.message : "Login failed. Please try again."

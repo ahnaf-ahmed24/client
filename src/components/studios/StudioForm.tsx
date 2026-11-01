@@ -9,7 +9,6 @@ import {
   LuImageUp,
   LuLoader,
   LuPlus,
-  LuTrash2,
   LuUpload,
   LuX,
 } from "react-icons/lu";
@@ -78,7 +77,6 @@ export default function StudioForm({
   const galleryInputRef = useRef<HTMLInputElement | null>(null);
 
 
-
   const errors = useMemo(() => {
     const messages: Record<string, string> = {};
     if (title.trim().length < 3) messages.title = "Title needs at least 3 characters.";
@@ -104,8 +102,6 @@ export default function StudioForm({
 
   const formValid = Object.keys(errors).length === 0;
 
-
-
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (submitting) return;
@@ -114,7 +110,6 @@ export default function StudioForm({
       toast.error("Please fix the highlighted fields before submitting.");
       return;
     }
-
 
     const uniqueImages = [...new Set([image.trim(), ...gallery])].filter(Boolean);
 
@@ -131,7 +126,6 @@ export default function StudioForm({
       overview: overview.trim(),
     });
   };
-
 
 
   const uploadCover = async (file: File) => {
@@ -165,7 +159,6 @@ export default function StudioForm({
       setGalleryUploading(false);
     }
   };
-
 
 
   const toggleAmenity = (amenity: string) => {
@@ -252,7 +245,7 @@ export default function StudioForm({
         </div>
       </fieldset>
 
-      
+  
       <fieldset className="mt-6 rounded-2xl border border-base-300 bg-base-100 p-5 sm:p-6">
         <h2 className="font-heading text-lg font-semibold">Pricing &amp; capacity</h2>
         <p className="mt-1 text-xs text-base-content/50">
@@ -332,7 +325,7 @@ export default function StudioForm({
         </label>
       </fieldset>
 
-     
+  
       <fieldset className="mt-6 rounded-2xl border border-base-300 bg-base-100 p-5 sm:p-6">
         <h2 className="font-heading text-lg font-semibold">Visuals</h2>
         <p className="mt-1 text-xs text-base-content/50">
@@ -347,10 +340,11 @@ export default function StudioForm({
             <div className="flex flex-wrap items-start gap-3">
               <div className="grid size-24 shrink-0 place-items-center overflow-hidden rounded-xl border border-base-300 bg-base-200">
                 {image && httpUrl(image) ? (
-                  // eslint-disable-next-line @next/next/no-img-element
-                  <img
+                  
+                  <Image
                     src={image}
                     alt="Studio cover preview"
+                    fill
                     className="h-full w-full object-cover"
                   />
                 ) : (
@@ -466,11 +460,10 @@ export default function StudioForm({
                     key={url}
                     className="group relative inline-flex items-center gap-2 rounded-full border border-base-300 bg-base-200/70 py-1 pl-1 pr-2.5"
                   >
-                    
                     <Image
                       src={url}
-                      fill
                       alt=""
+                      fill
                       className="size-7 rounded-full object-cover"
                     />
                     <span className="max-w-40 truncate text-xs text-base-content/70">
@@ -497,7 +490,7 @@ export default function StudioForm({
         </div>
       </fieldset>
 
-     
+      {/* Amenities */}
       <fieldset className="mt-6 rounded-2xl border border-base-300 bg-base-100 p-5 sm:p-6">
         <h2 className="font-heading text-lg font-semibold">
           Amenities <span className="text-error">*</span>
@@ -586,7 +579,7 @@ export default function StudioForm({
         )}
       </fieldset>
 
-     
+ 
       <fieldset className="mt-6 rounded-2xl border border-base-300 bg-base-100 p-5 sm:p-6">
         <h2 className="font-heading text-lg font-semibold">Detailed overview</h2>
         <p className="mt-1 text-xs text-base-content/50">
@@ -621,7 +614,7 @@ export default function StudioForm({
           </span>
         </label>
 
-    
+
         <div className="mt-5 rounded-xl border border-base-200 bg-base-200/50 p-4">
           <p className="text-xs font-semibold uppercase tracking-wider text-base-content/50">
             Host (read-only)
@@ -652,7 +645,6 @@ export default function StudioForm({
         </div>
       </fieldset>
 
-      
       <div className="mt-7 flex flex-wrap items-center justify-end gap-3">
         <Link
           href="/my-listings"

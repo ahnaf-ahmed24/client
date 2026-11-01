@@ -3,7 +3,6 @@
 // import { useEffect } from "react";
 import { LuLoader } from "react-icons/lu";
 
-
 export default function PageLoader({ label = "Loading…" }: { label?: string }) {
   return (
     <div

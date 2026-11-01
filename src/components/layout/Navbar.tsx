@@ -11,6 +11,7 @@ import {
   LuChevronDown,
   LuCirclePlus,
   LuHeart,
+  LuLayoutDashboard,
   LuLogOut,
   LuMenu,
   LuMoon,
@@ -27,24 +28,20 @@ interface AccountLink {
   href: string;
   label: string;
   icon: IconType;
-
   accent?: boolean;
 }
 
 const ACCOUNT_LINKS: AccountLink[] = [
-  { href: "/dashboard/add-studio", label: "Add New Studio", icon: LuCirclePlus, accent: true },
-  { href: "/dashboard/my-studios", label: "My Studio Listings", icon: LuBuilding2 },
-  { href: "/dashboard/my-bookings", label: "My Bookings", icon: LuCalendar },
-  // TODO(API): wishlist page lands with the wishlist feature; route reserved now.
-  { href: "/dashboard/wishlist", label: "Saved Wishlist", icon: LuHeart },
+  { href: "/dashboard", label: "Dashboard", icon: LuLayoutDashboard },
+  { href: "/add-studio", label: "Add New Studio", icon: LuCirclePlus, accent: true },
+  { href: "/my-listings", label: "My Studio Listings", icon: LuBuilding2 },
+  { href: "/my-bookings", label: "My Bookings", icon: LuCalendar },
+  { href: "/wishlist", label: "Saved Wishlist", icon: LuHeart },
 ];
 
-
+/** Plain-route match, used for the dashboard account links. */
 const isRouteActive = (href: string, pathname: string) =>
   href === "/" ? pathname === "/" : pathname === href || pathname.startsWith(`${href}/`);
-
-
-
 const isLinkActive = (href: string, pathname: string, activeSection: string | null) => {
   const hashIndex = href.indexOf("#");
   if (hashIndex === -1) {
@@ -67,7 +64,6 @@ const initialsOf = (name: string) =>
 function ThemeToggle() {
   const { resolvedTheme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
-
 
   useEffect(() => setMounted(true), []);
 
@@ -101,14 +97,12 @@ export default function Navbar() {
 
   const headerRef = useRef<HTMLElement | null>(null);
 
-
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8);
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
-
 
   useEffect(() => {
     if (pathname !== "/") {
@@ -118,7 +112,6 @@ export default function Navbar() {
 
     let frame = 0;
     const update = () => {
-
       const marker = window.innerHeight * 0.35;
       let current: string | null = null;
       document.querySelectorAll<HTMLElement>("[data-nav-section]").forEach((section) => {
@@ -134,7 +127,6 @@ export default function Navbar() {
     update();
     window.addEventListener("scroll", onScroll, { passive: true });
     window.addEventListener("resize", onScroll);
-
     const settle = window.setTimeout(update, 450);
 
     return () => {
@@ -145,13 +137,11 @@ export default function Navbar() {
     };
   }, [pathname]);
 
-
   useEffect(() => {
     setMobileOpen(false);
     setUserMenuOpen(false);
   }, [pathname]);
 
-  // Close menus on outside click or Escape.
   useEffect(() => {
     if (!mobileOpen && !userMenuOpen) return;
 
@@ -206,7 +196,6 @@ export default function Navbar() {
       }`}
     >
       <div className="container-page flex h-16 items-center gap-4">
-       
         <div className="flex items-center gap-1.5">
           <button
             type="button"
@@ -225,7 +214,6 @@ export default function Navbar() {
           <Logo />
         </div>
 
-       
         <nav
           className="hidden flex-1 justify-center lg:flex"
           aria-label="Primary navigation"
@@ -255,14 +243,12 @@ export default function Navbar() {
           })}
         </nav>
 
-        
         <div className="ml-auto flex items-center gap-2 sm:gap-3">
           <ThemeToggle />
 
           {authLoading ? (
             <div className="skeleton h-10 w-24 rounded-full" aria-hidden />
           ) : user ? (
-            
             <div className="relative">
               <button
                 type="button"
@@ -274,10 +260,10 @@ export default function Navbar() {
                 className="group flex items-center gap-2 rounded-full p-1 transition-colors hover:bg-base-200 pr-2.5"
               >
                 {user.photoURL ? (
-                  
                   <Image
                     src={user.photoURL}
                     alt=""
+                    fill
                     className="size-10 rounded-full object-cover"
                   />
                 ) : (
@@ -316,7 +302,6 @@ export default function Navbar() {
 
                   <div className="mx-1 h-px bg-base-200" role="presentation" />
 
-                  
                   <ul role="none" className="mt-1.5 space-y-0.5">
                     {ACCOUNT_LINKS.map(({ href, label, icon: Icon, accent }) => {
                       const active = isRouteActive(href, pathname);
@@ -349,7 +334,8 @@ export default function Navbar() {
                   </ul>
 
                   <div className="mx-1 my-1.5 h-px bg-base-200" role="presentation" />
-  
+
+                  {/* Sign out */}
                   <button
                     type="button"
                     role="menuitem"
@@ -364,7 +350,6 @@ export default function Navbar() {
               )}
             </div>
           ) : (
-           
             <div className="hidden items-center gap-2 sm:flex">
               <Link href="/login" className="btn btn-ghost rounded-full px-4 font-medium">
                 Login
@@ -380,7 +365,6 @@ export default function Navbar() {
         </div>
       </div>
 
-      
       {mobileOpen && (
         <div
           id="mobile-menu"
@@ -433,6 +417,7 @@ export default function Navbar() {
                     <Image
                       src={user.photoURL}
                       alt=""
+                      fill
                       className="size-10 rounded-full object-cover"
                     />
                   ) : (

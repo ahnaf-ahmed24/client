@@ -2,9 +2,7 @@
 
 import { useEffect, useState } from "react";
 
-const FALLBACK_YEAR = 2026;
-
-
+const FALLBACK_YEAR = 2026; 
 export default function CurrentYear() {
   const [year, setYear] = useState(FALLBACK_YEAR);
 

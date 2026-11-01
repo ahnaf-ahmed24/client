@@ -7,6 +7,7 @@ import { useAuth } from "@/providers/AuthProvider";
 import type { Studio, StudioCategory } from "@/lib/types";
 import { formatHourlyRate, formatMoney } from "@/lib/format";
 import { CATEGORY_ICONS } from "./categoryIcons";
+import Image from "next/image";
 
 interface StudioCardProps {
   studio: Studio;
@@ -33,12 +34,12 @@ export default function StudioCard({ studio }: StudioCardProps) {
 
   return (
     <article className="card-hover group flex flex-col overflow-hidden rounded-2xl border border-base-300 bg-base-100">
-      {/* Visual — real image, or crafted placeholder until owners upload photos */}
       <div className="relative aspect-[4/3] overflow-hidden bg-linear-to-br from-base-200 to-base-300">
         {studio.image ? (
-          <img
+          <Image
             src={studio.image}
             alt={studio.title}
+            fill
             loading="lazy"
             className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
           />
@@ -65,7 +66,7 @@ export default function StudioCard({ studio }: StudioCardProps) {
         </button>
       </div>
 
-      {/* Body */}
+  
       <div className="flex flex-1 flex-col gap-2.5 p-5">
         <div className="flex items-center justify-between gap-2">
           <span className="inline-flex items-center gap-1.5 rounded-full bg-warning/10 px-2.5 py-1 text-xs font-semibold text-warning">

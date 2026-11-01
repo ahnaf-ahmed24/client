@@ -22,7 +22,7 @@ interface SocialLink {
 
 
 const SOCIAL_LINKS: SocialLink[] = [
-  { label: "X (formerly Twitter)", href: "#", icon: FaXTwitter }, // new X logo, NOT the old Twitter bird
+  { label: "X (formerly Twitter)", href: "#", icon: FaXTwitter },
   { label: "Instagram", href: "#", icon: FaInstagram },
   { label: "Facebook", href: "#", icon: FaFacebookF },
   { label: "YouTube", href: "#", icon: FaYoutube },
@@ -37,7 +37,6 @@ export default function Footer() {
     <footer className="border-t border-base-300/60 bg-neutral text-neutral-content">
       <div className="container-page py-12 lg:py-16">
         <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-[1.6fr_1fr_1fr_1.4fr]">
-          
           <div>
             <Logo variant="dark" />
             <p className="mt-4 max-w-sm text-sm leading-6 text-neutral-content/70">
@@ -61,7 +60,6 @@ export default function Footer() {
             </div>
           </div>
 
-
           <nav aria-label="Quick links">
             <h3 className={headingClass}>Quick Links</h3>
             <ul className="mt-4 space-y-2.5 text-sm text-neutral-content/70">
@@ -77,7 +75,6 @@ export default function Footer() {
               ))}
             </ul>
           </nav>
-
 
           <nav aria-label="Popular studio categories">
             <h3 className={headingClass}>Popular Categories</h3>
@@ -95,7 +92,6 @@ export default function Footer() {
             </ul>
           </nav>
 
-
           <div>
             <h3 className={headingClass}>Stay in the Loop</h3>
             <p className="mt-4 text-sm leading-6 text-neutral-content/70">
@@ -108,7 +104,6 @@ export default function Footer() {
             </p>
           </div>
         </div>
-
 
         <div className="mt-12 flex flex-col items-center justify-between gap-3 border-t border-white/10 pt-6 text-sm text-neutral-content/60 sm:flex-row">
           <p>

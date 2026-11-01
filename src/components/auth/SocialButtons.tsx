@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { FaGithub, FaGoogle } from "react-icons/fa6";
 import { LuLoader } from "react-icons/lu";
-import { API_BASE_URL } from "@/lib/config";
+import { apiUrl } from "@/lib/api";
 
 interface SocialButtonsProps {
   
@@ -20,7 +20,7 @@ export default function SocialButtons({ showGithub = false }: SocialButtonsProps
     const from = window.location.pathname.includes("register")
       ? "register"
       : "login";
-    window.location.assign(`${API_BASE_URL}/auth/${provider}?from=${from}`);
+    window.location.assign(apiUrl(`/auth/${provider}?from=${from}`));
   };
 
   return (

@@ -18,7 +18,6 @@ const WIDTHS: Record<NonNullable<ModalProps["size"]>, string> = {
   lg: "max-w-2xl",
 };
 
-
 export default function Modal({
   open,
   onClose,
@@ -27,7 +26,6 @@ export default function Modal({
   busy = false,
   children,
 }: ModalProps) {
-  
   useEffect(() => {
     if (!open || busy) return;
 

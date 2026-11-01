@@ -10,6 +10,7 @@ import type { IconType } from "react-icons";
 import { LuCamera, LuMic, LuRocket } from "react-icons/lu";
 import Image from "next/image";
 
+
 interface HeroSlide {
   icon: IconType;
   badge: string;
@@ -56,7 +57,7 @@ const SLIDES: HeroSlide[] = [
       </>
     ),
     text: "List once, set your own rate, and turn idle hours into steady, stress-free income.",
-    image: unsplash("1500462918059-b1a0cb512f1d"),
+    image: unsplash("1500462918059-b1a0cb512f1d"), 
     alt: "A studio corridor glowing with pink and blue neon stage lighting",
   },
 ];

@@ -29,7 +29,6 @@ export default function RegisterForm() {
   const [showPassword, setShowPassword] = useState(false);
   const [submitting, setSubmitting] = useState(false);
 
-  // Already signed in? Straight to the home page.
   useEffect(() => {
     if (!authLoading && user) router.replace("/");
   }, [authLoading, user, router]);

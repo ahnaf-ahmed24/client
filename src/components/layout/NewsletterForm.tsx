@@ -22,7 +22,6 @@ export default function NewsletterForm() {
 
     setSubmitting(true);
     try {
-  
       await new Promise((resolve) => setTimeout(resolve, 500));
       toast.success("You're on the list! Studio news & offers are on their way.");
       setEmail("");

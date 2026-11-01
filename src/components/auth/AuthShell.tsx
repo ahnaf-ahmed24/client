@@ -1,5 +1,6 @@
-import { LuAperture, LuCircleCheck } from "react-icons/lu";
-import Logo from "@/components/layout/Logo";
+import Link from "next/link";
+import { LuCircleCheck } from "react-icons/lu";
+import Logo, { BrandMark } from "@/components/layout/Logo";
 
 interface AuthShellProps {
   eyebrow: string;
@@ -15,13 +16,12 @@ export default function AuthShell({ eyebrow, title, subtitle, children }: AuthSh
   return (
     <main className="container-page py-10 sm:py-14">
       <div className="grid overflow-hidden rounded-[2rem] border border-base-300 bg-base-100 shadow-xl shadow-base-300/40 lg:grid-cols-2">
-        {/* Brand panel */}
+       
         <div className="panel-dark relative hidden lg:block">
           <div className="panel-grid absolute inset-0" aria-hidden />
           <span aria-hidden className="panel-glow absolute -top-24 -right-16 size-80 rounded-full" />
-          <LuAperture
-            aria-hidden
-            className="pointer-events-none absolute -bottom-10 -left-6 size-48 -rotate-12 text-primary/10"
+          <BrandMark
+            className="pointer-events-none absolute -bottom-10 -left-6 size-48 -rotate-12 opacity-10"
           />
 
           <div className="relative flex h-full flex-col justify-between p-10">
@@ -47,8 +47,6 @@ export default function AuthShell({ eyebrow, title, subtitle, children }: AuthSh
             </p>
           </div>
         </div>
-
-    
         <div className="flex flex-col justify-center px-6 py-10 sm:px-12 sm:py-14">
           <div className="mx-auto w-full max-w-md">
             <span className="eyebrow">{eyebrow}</span>

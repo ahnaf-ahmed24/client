@@ -24,8 +24,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html
       lang="en"
       data-theme="light"
-      // Keeps smooth scrolling for in-page anchors; Next.js restores instant
-      // scrolling during route transitions (Next 16 scroll-behavior override).
       data-scroll-behavior="smooth"
       suppressHydrationWarning
       className={`${inter.variable} ${sora.variable}`}
@@ -35,8 +33,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         className="flex min-h-screen flex-col bg-base-100 font-sans text-base-content antialiased"
       >
         <AppProviders>
-          {/* Navbar reads the URL via usePathname (client hook) — with cacheComponents
-              it must sit in a Suspense boundary so dynamic routes can still prerender. */}
+         
           <Suspense fallback={<NavbarSkeleton />}>
             <Navbar />
           </Suspense>

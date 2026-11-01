@@ -1,7 +1,6 @@
 import { Suspense } from "react";
 import Link from "next/link";
 import {
-  LuAperture,
   LuArrowRight,
   LuBadgeCheck,
   LuHandshake,
@@ -19,6 +18,7 @@ import FeaturedStudios from "@/components/home/FeaturedStudios";
 import type { IconType } from "react-icons";
 import { STUDIO_CATEGORIES } from "@/lib/types";
 import { CATEGORY_ICONS } from "@/components/studios/categoryIcons";
+import { BrandMark } from "@/components/layout/Logo";
 
 const BOOKING_STEPS: { icon: IconType; step: string; title: string; text: string }[] = [
   {
@@ -96,12 +96,15 @@ const VALUES: { icon: IconType; title: string; text: string }[] = [
 export default function Home() {
   return (
     <>
+
       <section className="container-page pt-6 sm:pt-10">
         <Suspense fallback={<HeroSkeleton />}>
           <HeroSlider />
         </Suspense>
       </section>
       <FeaturedStudios />
+
+
       <section className="container-page py-12 sm:py-16">
         <div className="flex flex-wrap items-end justify-between gap-4">
           <div>
@@ -175,7 +178,6 @@ export default function Home() {
         </div>
       </section>
 
-
       <section className="container-page pb-12 sm:pb-16">
         <span className="eyebrow">Host guarantee &amp; creator support</span>
         <h2 className="section-heading mt-2">
@@ -246,7 +248,6 @@ export default function Home() {
         </div>
       </section>
 
-
       <section className="container-page pb-14 sm:pb-16">
         <div className="panel-dark rounded-[2rem]">
           <div className="panel-grid absolute inset-0" aria-hidden />
@@ -254,10 +255,7 @@ export default function Home() {
             aria-hidden
             className="panel-glow absolute -top-24 -right-24 size-96 rounded-full"
           />
-          <LuAperture
-            aria-hidden
-            className="pointer-events-none absolute -right-10 bottom-0 hidden size-56 rotate-12 text-primary/10 lg:block"
-          />
+          <BrandMark className="pointer-events-none absolute -right-10 bottom-0 hidden size-56 rotate-12 opacity-10 lg:block" />
 
           <div className="relative flex flex-col items-start justify-between gap-8 px-6 py-14 sm:flex-row sm:items-center sm:px-12">
             <div className="max-w-xl">
