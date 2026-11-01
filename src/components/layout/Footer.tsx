@@ -30,16 +30,16 @@ const SOCIAL_LINKS: SocialLink[] = [
 ];
 
 const headingClass =
-  "font-heading text-sm font-semibold uppercase tracking-widest text-neutral-content";
+  "font-heading text-sm font-semibold uppercase tracking-widest text-base-content";
 
 export default function Footer() {
   return (
-    <footer className="border-t border-base-300/60 bg-neutral text-neutral-content">
+    <footer className="border-t border-base-300 bg-base-200 text-base-content">
       <div className="container-page py-12 lg:py-16">
         <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-[1.6fr_1fr_1fr_1.4fr]">
           <div>
-            <Logo variant="dark" />
-            <p className="mt-4 max-w-sm text-sm leading-6 text-neutral-content/70">
+            <Logo />
+            <p className="mt-4 max-w-sm text-sm leading-6 text-base-content/70">
               The peer-to-peer marketplace where photographers, filmmakers,
               podcasters and musicians discover, list and book creative studios
               &amp; production spaces — with transparent hourly pricing.
@@ -52,7 +52,7 @@ export default function Footer() {
                   aria-label={`StudioSpace on ${label}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="grid size-9 place-items-center rounded-full border border-white/10 bg-white/5 text-neutral-content/80 transition hover:-translate-y-0.5 hover:border-primary hover:bg-primary hover:text-primary-content"
+                  className="grid size-9 place-items-center rounded-full border border-base-300 bg-base-100 text-base-content/80 transition hover:-translate-y-0.5 hover:border-primary hover:bg-primary hover:text-primary-content"
                 >
                   <Icon aria-hidden className="size-4" />
                 </a>
@@ -62,7 +62,7 @@ export default function Footer() {
 
           <nav aria-label="Quick links">
             <h3 className={headingClass}>Quick Links</h3>
-            <ul className="mt-4 space-y-2.5 text-sm text-neutral-content/70">
+            <ul className="mt-4 space-y-2.5 text-sm text-base-content/70">
               {NAV_LINKS.map((link) => (
                 <li key={link.href}>
                   <Link
@@ -78,7 +78,7 @@ export default function Footer() {
 
           <nav aria-label="Popular studio categories">
             <h3 className={headingClass}>Popular Categories</h3>
-            <ul className="mt-4 space-y-2.5 text-sm text-neutral-content/70">
+            <ul className="mt-4 space-y-2.5 text-sm text-base-content/70">
               {STUDIO_CATEGORIES.map((category) => (
                 <li key={category}>
                   <Link
@@ -94,18 +94,18 @@ export default function Footer() {
 
           <div>
             <h3 className={headingClass}>Stay in the Loop</h3>
-            <p className="mt-4 text-sm leading-6 text-neutral-content/70">
+            <p className="mt-4 text-sm leading-6 text-base-content/70">
               New studios, opening offers and creator stories — straight to your
               inbox.
             </p>
             <NewsletterForm />
-            <p className="mt-3 text-xs text-neutral-content/50">
+            <p className="mt-3 text-xs text-base-content/50">
               No spam — unsubscribe anytime.
             </p>
           </div>
         </div>
 
-        <div className="mt-12 flex flex-col items-center justify-between gap-3 border-t border-white/10 pt-6 text-sm text-neutral-content/60 sm:flex-row">
+        <div className="mt-12 flex flex-col items-center justify-between gap-3 border-t border-base-300 pt-6 text-sm text-base-content/60 sm:flex-row">
           <p>
             © <CurrentYear /> {SITE_NAME}. All rights reserved.
           </p>
