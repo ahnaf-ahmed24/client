@@ -22,7 +22,7 @@ export default function StudioGallery({
 
   if (count === 0) {
     return (
-      <div className="grid aspect-[16/10] w-full place-items-center overflow-hidden rounded-[1.75rem] border border-base-300 bg-base-200">
+      <div className="grid aspect-[4/3] w-full place-items-center overflow-hidden rounded-[1.75rem] border border-base-300 bg-base-200 sm:aspect-[16/9] lg:aspect-[16/7]">
         <Placeholder aria-hidden className="size-16 text-base-content/20" />
       </div>
     );
@@ -31,9 +31,9 @@ export default function StudioGallery({
   const step = (delta: number) => setIndex((i) => (i + delta + count) % count);
 
   return (
-    <figure className="overflow-hidden rounded-[1.75rem] border border-base-300 bg-base-200">
+    <figure className="overflow-hidden rounded-[1.75rem] border border-base-300 bg-base-200 shadow-lg shadow-base-300/30">
       <div
-        className="relative aspect-[16/10] w-full overflow-hidden"
+        className="relative aspect-[4/3] w-full overflow-hidden sm:aspect-[16/9] lg:aspect-[16/7]"
         tabIndex={count > 1 ? 0 : undefined}
         role={count > 1 ? "region" : undefined}
         aria-label={count > 1 ? `${title} photo gallery` : undefined}
@@ -53,6 +53,7 @@ export default function StudioGallery({
           key={images[index]}
           src={images[index]}
           fill
+          sizes="(min-width: 1024px) 76rem, 94vw"
           alt={`${title} — photo ${index + 1} of ${count}`}
           className="h-full w-full object-cover"
           loading={index === 0 ? "eager" : "lazy"}
@@ -95,7 +96,7 @@ export default function StudioGallery({
                 onClick={() => setIndex(i)}
                 aria-current={i === index}
                 aria-label={`${title} — thumbnail ${i + 1}`}
-                className={`gallery-thumb block aspect-video w-20 overflow-hidden rounded-lg border-2 border-transparent transition ${
+                className={`gallery-thumb relative block aspect-video w-20 overflow-hidden rounded-lg border-2 border-base-300 transition ${
                   i === index ? "opacity-100" : "opacity-55 hover:opacity-90"
                 }`}
               >
@@ -103,6 +104,7 @@ export default function StudioGallery({
                   src={src}
                   alt=""
                   fill
+                  sizes="80px"
                   className="h-full w-full object-cover"
                   loading="lazy"
                 />
