@@ -39,7 +39,7 @@ const ACCOUNT_LINKS: AccountLink[] = [
   { href: "/wishlist", label: "Saved Wishlist", icon: LuHeart },
 ];
 
-/** Plain-route match, used for the dashboard account links. */
+
 const isRouteActive = (href: string, pathname: string) =>
   href === "/" ? pathname === "/" : pathname === href || pathname.startsWith(`${href}/`);
 const isLinkActive = (href: string, pathname: string, activeSection: string | null) => {
@@ -289,7 +289,7 @@ export default function Navbar() {
                   aria-orientation="vertical"
                   className="absolute end-0 top-full z-50 mt-3 w-72 max-w-[calc(100vw-1.5rem)] rounded-2xl border border-base-300/70 bg-base-100 p-3 shadow-xl shadow-base-300/50"
                 >
-                  {/* Signed in as — identity header */}
+
                   <div className="px-2.5 pb-3 pt-1.5">
                     <p className="text-xs text-base-content/50">Signed in as</p>
                     <p className="mt-1 truncate font-heading text-lg font-bold">
@@ -335,7 +335,7 @@ export default function Navbar() {
 
                   <div className="mx-1 my-1.5 h-px bg-base-200" role="presentation" />
 
-                  {/* Sign out */}
+
                   <button
                     type="button"
                     role="menuitem"
@@ -411,7 +411,7 @@ export default function Navbar() {
               </div>
             ) : user ? (
               <div className="space-y-0.5">
-                {/* User identity */}
+
                 <div className="flex items-center gap-3 rounded-lg px-3 py-2">
                   {user.photoURL ? (
                     <Image

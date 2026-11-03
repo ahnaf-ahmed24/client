@@ -33,7 +33,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         className="flex min-h-screen flex-col bg-base-100 font-sans text-base-content antialiased"
       >
         <AppProviders>
-         
+
           <Suspense fallback={<NavbarSkeleton />}>
             <Navbar />
           </Suspense>

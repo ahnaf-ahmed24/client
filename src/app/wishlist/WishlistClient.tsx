@@ -30,7 +30,7 @@ export default function WishlistClient() {
     void load();
   }, []);
 
-  // Keep the grid in sync with hearts toggled on this page.
+
   const visible = useMemo(
     () => items.filter((item) => wishlistIds.includes(item.studioId)),
     [items, wishlistIds]

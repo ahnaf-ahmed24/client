@@ -28,7 +28,7 @@ export default function MyListingsClient() {
   const [source, setSource] = useState<Source>("loading");
   const [error, setError] = useState("");
 
-  // Delete flow
+
   const [deleteTarget, setDeleteTarget] = useState<Studio | null>(null);
   const [deleting, setDeleting] = useState(false);
 
@@ -144,7 +144,7 @@ export default function MyListingsClient() {
         </Link>
       </p>
 
-      {/* Tablet and up: table */}
+
       <div className="mt-4 hidden overflow-hidden rounded-2xl border border-base-300 bg-base-100 md:block">
         <table className="table">
           <thead className="bg-base-200/60 text-xs uppercase tracking-wider text-base-content/60">
@@ -164,7 +164,7 @@ export default function MyListingsClient() {
                   <div className="flex items-center gap-3">
                     <div className="h-14 w-20 shrink-0 overflow-hidden rounded-lg bg-base-200">
                       {studio.image ? (
-                        // eslint-disable-next-line @next/next/no-img-element
+
                         <img
                           src={studio.image}
                           alt=""
@@ -236,7 +236,7 @@ export default function MyListingsClient() {
         </table>
       </div>
 
-     
+
       <div className="mt-4 grid gap-4 md:hidden">
         {studios.map((studio) => (
           <article
@@ -246,7 +246,7 @@ export default function MyListingsClient() {
             <div className="flex gap-3 p-4">
               <div className="h-20 w-28 shrink-0 overflow-hidden rounded-xl bg-base-200">
                 {studio.image ? (
-                  
+
                   <Image
                     src={studio.image}
                     alt=""
@@ -299,7 +299,7 @@ export default function MyListingsClient() {
         ))}
       </div>
 
-      
+
       <Modal
         open={Boolean(deleteTarget)}
         onClose={() => setDeleteTarget(null)}

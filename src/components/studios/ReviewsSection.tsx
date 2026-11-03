@@ -103,7 +103,7 @@ export default function ReviewsSection({
         </div>
       </div>
 
-      {/* Review form */}
+
       {userEmail === null ? (
         <div className="mt-5 flex flex-wrap items-center justify-between gap-3 rounded-xl border border-base-300 bg-base-200/40 px-4 py-5">
           <p className="text-sm text-base-content/70">

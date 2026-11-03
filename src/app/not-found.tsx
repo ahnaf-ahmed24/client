@@ -22,14 +22,14 @@ export default function NotFound() {
           className="panel-glow-soft absolute -bottom-28 right-0 size-80 rounded-full"
         />
 
-       
+
         <svg
           aria-hidden
           viewBox="0 0 420 260"
           role="img"
           className="mx-auto mt-10 hidden w-full max-w-md sm:block"
         >
-         
+
           <defs>
             <linearGradient id="beam" x1="0" y1="0" x2="0" y2="1">
               <stop offset="0%" stopColor="#818cf8" stopOpacity="0.45" />
@@ -38,10 +38,10 @@ export default function NotFound() {
           </defs>
           <polygon points="70,0 165,0 120,215 30,215" fill="url(#beam)" />
           <polygon points="255,0 350,0 390,215 300,215" fill="url(#beam)" />
-         
+
           <rect x="88" y="8" width="52" height="34" rx="8" fill="#312e81" />
           <rect x="286" y="8" width="52" height="34" rx="8" fill="#312e81" />
-         
+
           <ellipse cx="210" cy="222" rx="180" ry="14" fill="#0f121b" />
 
           <g stroke="#a5b4fc" strokeWidth="5" strokeLinecap="round">

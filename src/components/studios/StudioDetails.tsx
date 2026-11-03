@@ -14,8 +14,6 @@ import {
   LuShieldCheck,
   LuStar,
   LuTriangleAlert,
-  LuUsers,
-  LuWallet,
 } from "react-icons/lu";
 import PageLoader from "@/components/ui/PageLoader";
 import BookingModal from "./BookingModal";
@@ -124,7 +122,7 @@ export default function StudioDetails({ id }: { id: string }) {
 
   return (
     <>
-      {/* Top bar */}
+
       <div className="flex flex-wrap items-center justify-between gap-3">
         <Link
           href="/studios"
@@ -147,7 +145,6 @@ export default function StudioDetails({ id }: { id: string }) {
         )}
       </div>
 
-      {/* Heading */}
       <header className="mt-7">
         <span className="rounded-full bg-primary/10 px-3 py-1 text-xs font-semibold text-primary">
           {studio.category}
@@ -161,7 +158,6 @@ export default function StudioDetails({ id }: { id: string }) {
         </p>
       </header>
 
-      {/* Gallery */}
       <div className="mt-6">
         <StudioGallery
           images={images}
@@ -170,7 +166,6 @@ export default function StudioDetails({ id }: { id: string }) {
         />
       </div>
 
-      {/* Quick stats */}
       <dl className="mt-6 grid grid-cols-2 gap-x-6 gap-y-5 rounded-2xl border border-base-300 bg-base-100 px-6 py-5 sm:grid-cols-4">
         <div className="sm:border-l sm:border-base-300 sm:pl-5 sm:first:border-l-0 sm:first:pl-0">
           <dt className="text-[11px] font-semibold uppercase tracking-wider text-base-content/50">
@@ -212,10 +207,9 @@ export default function StudioDetails({ id }: { id: string }) {
         </div>
       </dl>
 
-      {/* Main grid */}
       <div className="mt-6 grid gap-6 lg:grid-cols-[1fr_360px]">
         <div className="space-y-6">
-          {/* Workspace overview */}
+
           <section
             aria-label="Workspace overview"
             className="rounded-2xl border border-base-300 bg-base-100 p-6"
@@ -228,7 +222,6 @@ export default function StudioDetails({ id }: { id: string }) {
             </p>
           </section>
 
-          {/* Amenities */}
           <section
             aria-label="Equipment and amenities"
             className="rounded-2xl border border-base-300 bg-base-100 p-6"
@@ -250,7 +243,6 @@ export default function StudioDetails({ id }: { id: string }) {
             </ul>
           </section>
 
-          {/* Host */}
           <section
             aria-label="Host details"
             className="rounded-2xl border border-base-300 bg-base-100 p-5 sm:p-6"
@@ -283,7 +275,6 @@ export default function StudioDetails({ id }: { id: string }) {
           </section>
         </div>
 
-        {/* Booking panel */}
         <div className="lg:sticky lg:top-24 lg:self-start">
           <section
             aria-label="Book this studio"
@@ -356,7 +347,6 @@ export default function StudioDetails({ id }: { id: string }) {
         </div>
       </div>
 
-      {/* Reviews */}
       <div className="mt-10">
         <ReviewsSection
           studioId={studio._id}

@@ -77,7 +77,7 @@ export default function HeroSlider() {
       >
         {SLIDES.map(({ icon: Icon, badge, headline, text, image, alt }) => (
           <SwiperSlide key={badge}>
-            {/* High-res visual + overlay for text legibility */}
+
             <Image
               src={image}
               alt={alt}

@@ -189,7 +189,7 @@ export default function StudioForm({
 
   return (
     <form onSubmit={handleSubmit} className="mt-8" noValidate>
-      {/* The basics */}
+
       <fieldset className="panel-item rounded-2xl border border-base-300 bg-base-100 p-5 sm:p-6">
         <legend className="sr-only">The basics</legend>
         <h2 className="font-heading text-lg font-semibold">The basics</h2>
@@ -245,7 +245,7 @@ export default function StudioForm({
         </div>
       </fieldset>
 
-  
+
       <fieldset className="mt-6 rounded-2xl border border-base-300 bg-base-100 p-5 sm:p-6">
         <h2 className="font-heading text-lg font-semibold">Pricing &amp; capacity</h2>
         <p className="mt-1 text-xs text-base-content/50">
@@ -325,7 +325,7 @@ export default function StudioForm({
         </label>
       </fieldset>
 
-  
+
       <fieldset className="mt-6 rounded-2xl border border-base-300 bg-base-100 p-5 sm:p-6">
         <h2 className="font-heading text-lg font-semibold">Visuals</h2>
         <p className="mt-1 text-xs text-base-content/50">
@@ -340,7 +340,7 @@ export default function StudioForm({
             <div className="flex flex-wrap items-start gap-3">
               <div className="grid size-24 shrink-0 place-items-center overflow-hidden rounded-xl border border-base-300 bg-base-200">
                 {image && httpUrl(image) ? (
-                  
+
                   <Image
                     src={image}
                     alt="Studio cover preview"
@@ -490,7 +490,7 @@ export default function StudioForm({
         </div>
       </fieldset>
 
-      {/* Amenities */}
+
       <fieldset className="mt-6 rounded-2xl border border-base-300 bg-base-100 p-5 sm:p-6">
         <h2 className="font-heading text-lg font-semibold">
           Amenities <span className="text-error">*</span>
@@ -579,7 +579,7 @@ export default function StudioForm({
         )}
       </fieldset>
 
- 
+
       <fieldset className="mt-6 rounded-2xl border border-base-300 bg-base-100 p-5 sm:p-6">
         <h2 className="font-heading text-lg font-semibold">Detailed overview</h2>
         <p className="mt-1 text-xs text-base-content/50">

@@ -147,7 +147,7 @@ export default function RegisterForm() {
           </button>
         </div>
 
-       
+
         <ul className="mt-2.5 space-y-1.5 rounded-xl bg-base-200/60 px-3.5 py-3">
           {PASSWORD_RULES.map((rule, index) => {
             const passing = passwordChecks[index];

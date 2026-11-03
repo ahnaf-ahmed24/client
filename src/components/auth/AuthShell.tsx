@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { LuCircleCheck } from "react-icons/lu";
 import Logo, { BrandMark } from "@/components/layout/Logo";
 
@@ -16,7 +15,7 @@ export default function AuthShell({ eyebrow, title, subtitle, children }: AuthSh
   return (
     <main className="container-page py-10 sm:py-14">
       <div className="grid overflow-hidden rounded-[2rem] border border-base-300 bg-base-100 shadow-xl shadow-base-300/40 lg:grid-cols-2">
-       
+
         <div className="panel-dark relative hidden lg:block">
           <div className="panel-grid absolute inset-0" aria-hidden />
           <span aria-hidden className="panel-glow absolute -top-24 -right-16 size-80 rounded-full" />

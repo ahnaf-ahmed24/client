@@ -52,7 +52,7 @@ export default function EditStudioClient({ id }: { id: string }) {
   }, [id, user]);
 
   useEffect(() => {
-    
+
     if (user) void load();
   }, [load, user]);
 

@@ -148,7 +148,7 @@ export default function DashboardClient() {
         here&apos;s how your spaces are doing.
       </p>
 
-      {/* Stats */}
+
       <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
         {statCards.map(({ icon: Icon, label, value, href, hint }) => (
           <Link
@@ -172,7 +172,7 @@ export default function DashboardClient() {
         ))}
       </div>
 
-     
+
       <div className="mt-6 flex flex-wrap gap-3">
         <Link
           href="/add-studio"
@@ -197,7 +197,7 @@ export default function DashboardClient() {
         </Link>
       </div>
 
-      {/* Recent activity */}
+
       <div className="mt-8 grid gap-6 lg:grid-cols-2">
         <BookingPanel title="My latest reservations" bookings={stats.recentMine} emptyText="Book a studio from Explore and it will show up here." />
         <BookingPanel title="Latest incoming (host)" bookings={stats.recentIncoming} emptyText="Guests who book your listings will appear here." />

@@ -6,7 +6,7 @@ import { LuLoader } from "react-icons/lu";
 import { apiUrl } from "@/lib/api";
 
 interface SocialButtonsProps {
-  
+
   showGithub?: boolean;
 }
 

@@ -30,7 +30,7 @@ export default function MyBookingsClient() {
   const [source, setSource] = useState<Source>("loading");
   const [error, setError] = useState("");
 
-  // Cancel flow
+
   const [cancelTarget, setCancelTarget] = useState<Booking | null>(null);
   const [cancelling, setCancelling] = useState(false);
 
@@ -171,10 +171,10 @@ export default function MyBookingsClient() {
               key={booking._id}
               className="card-hover flex flex-col gap-4 overflow-hidden rounded-2xl border border-base-300 bg-base-100 p-3 sm:flex-row sm:items-center"
             >
-              {/* Thumbnail */}
+
               <div className="h-32 w-full shrink-0 overflow-hidden rounded-xl bg-base-200 sm:h-24 sm:w-36">
                 {booking.studioImage ? (
-                  // eslint-disable-next-line @next/next/no-img-element
+
                   <img
                     src={booking.studioImage}
                     alt={booking.studioTitle}
@@ -188,7 +188,7 @@ export default function MyBookingsClient() {
                 )}
               </div>
 
-              {/* Core */}
+
               <div className="min-w-0 flex-1 px-1 sm:px-0">
                 <div className="flex flex-wrap items-center gap-2">
                   <span className="rounded-full bg-primary/10 px-2.5 py-0.5 text-[11px] font-semibold text-primary">
@@ -223,7 +223,7 @@ export default function MyBookingsClient() {
                 </p>
               </div>
 
-             
+
               <div className="flex shrink-0 items-center justify-between gap-4 px-1 sm:flex-col sm:items-end sm:p-0 md:pr-4">
                 <div className="text-right">
                   <p className="font-heading text-lg font-bold text-primary">
@@ -260,7 +260,7 @@ export default function MyBookingsClient() {
         })}
       </div>
 
-      
+
       <Modal
         open={Boolean(cancelTarget)}
         onClose={() => setCancelTarget(null)}

@@ -104,7 +104,6 @@ export default function Home() {
       </section>
       <FeaturedStudios />
 
-
       <section className="container-page py-12 sm:py-16">
         <div className="flex flex-wrap items-end justify-between gap-4">
           <div>
@@ -143,7 +142,6 @@ export default function Home() {
           })}
         </div>
       </section>
-
 
       <section
         id="how-it-works"
@@ -210,7 +208,6 @@ export default function Home() {
           ))}
         </div>
       </section>
-
 
       <section
         id="about"
@@ -300,7 +297,6 @@ export default function Home() {
     </>
   );
 }
-
 
 function HeroSkeleton() {
   return (
